@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,14 +17,42 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long productId;
 
     @Basic(optional = false)
     @NonNull
     private String name;
-
     private Double price;
-
     private String pictureUrl;
 
+    @ManyToMany(mappedBy = "products")
+    private List<Size> sizes = new ArrayList<>();
+
+    @ManyToOne
+    private Discount discount;
+
+    @ManyToOne
+    private ProductCategory productCategory;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<ProductInventory> productInventoryHistory = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    public void addOrderItem(OrderItem orderItem){
+        if(!orderItems.contains(orderItem)){
+            orderItems.add(orderItem);
+            orderItem.setProduct(this);
+        }
+    }
+
+    public void addProductInventory(ProductInventory productInventory){
+        if(!productInventoryHistory.contains(productInventory)){
+            productInventoryHistory.add(productInventory);
+            productInventory.setProduct(this);
+        }
+    }
 }
