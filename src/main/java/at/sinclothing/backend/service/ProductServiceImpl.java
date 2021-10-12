@@ -20,8 +20,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(long id) {
-        //TODO
-        return new Product();
+        for (Product product: products) {
+            if(product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 
     @Override
