@@ -25,7 +25,16 @@ public class Order implements Serializable {
     private double amount;
 
     @ManyToOne
+    @JoinColumn(name = "method_id")
     private PaymentMethod paymentMethod;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private PaymentStatus paymentStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude

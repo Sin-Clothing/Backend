@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProduct(long id) {
         for (Product product: products) {
-            if(product.getId() == id) {
+            if(product.getProductId() == id) {
                 return product;
             }
         }

@@ -2,10 +2,7 @@ package at.sinclothing.backend.pojos;
 
 import lombok.*;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -24,6 +21,8 @@ public class ProductInventory implements Serializable {
     @Basic(optional = false)
     private int quantity;
 
+    @Id
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 }

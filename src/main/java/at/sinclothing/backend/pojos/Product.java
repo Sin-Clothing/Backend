@@ -29,9 +29,11 @@ public class Product implements Serializable {
     private List<Size> sizes = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name = "discount_id")
     private Discount discount;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private ProductCategory productCategory;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
