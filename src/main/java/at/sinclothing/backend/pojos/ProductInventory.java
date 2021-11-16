@@ -6,11 +6,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity
+@Entity(name = "product_inventory")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
+@IdClass(ProductInventoryPK.class)
 public class ProductInventory implements Serializable {
 
     @Id

@@ -12,4 +12,7 @@ public interface ProductService {
     Product getProduct(long id);
 
     void save(Product product);
+
+    void fetchProducts();
+
 }

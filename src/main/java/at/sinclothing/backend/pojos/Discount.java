@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "discount")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

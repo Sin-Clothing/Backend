@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity
+@Entity(name = "size")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "product_order")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +21,7 @@ public class Order implements Serializable {
 
     @NonNull
     private LocalDate date;
+
     @NonNull
     private double amount;
 
@@ -36,14 +37,14 @@ public class Order implements Serializable {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<OrderItem> orderItems = new ArrayList<>();
 
     public void addOrderItem(OrderItem item){
         if (!orderItems.contains(item)){
             orderItems.add(item);
-            item.setOrder(this);
+            item.setOrderId(this);
         }
     }
 }
