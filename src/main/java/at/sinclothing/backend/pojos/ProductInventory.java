@@ -14,10 +14,6 @@ import java.time.LocalDate;
 @IdClass(ProductInventoryPK.class)
 public class ProductInventory implements Serializable {
 
-    @Id
-    @NonNull
-    private LocalDate createdAt;
-
     @NonNull
     @Basic(optional = false)
     private int quantity;
@@ -26,4 +22,9 @@ public class ProductInventory implements Serializable {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "size_id")
+    private Size size;
 }

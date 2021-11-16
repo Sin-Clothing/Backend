@@ -19,19 +19,17 @@ import java.util.List;
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long productId;
 
     @Basic(optional = false)
     @NonNull
     private String name;
+
     private Double price;
+
     @Column(name = "picture_url")
     private String pictureUrl;
-
-    @ManyToMany(mappedBy = "products")
-    private List<Size> sizes = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "discount_id")
@@ -43,7 +41,7 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude
-    private List<ProductInventory> productInventoryHistory = new ArrayList<>();
+    private List<ProductInventory> productInventories= new ArrayList<>();
 
     @OneToMany(mappedBy = "productId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude
@@ -57,8 +55,8 @@ public class Product implements Serializable {
     }
 
     public void addProductInventory(ProductInventory productInventory){
-        if(!productInventoryHistory.contains(productInventory)){
-            productInventoryHistory.add(productInventory);
+        if(!productInventories.contains(productInventory)){
+            productInventories.add(productInventory);
             productInventory.setProduct(this);
         }
     }

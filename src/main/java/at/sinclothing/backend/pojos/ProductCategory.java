@@ -18,7 +18,7 @@ import java.util.List;
 public class ProductCategory implements Serializable {
 
     @Id
-    @GeneratedValue
+    @Column(name = "category_id")
     private Long categoryId;
 
     @Basic(optional = false)

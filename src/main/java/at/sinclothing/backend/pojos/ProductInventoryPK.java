@@ -11,6 +11,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductInventoryPK implements Serializable {
-    private LocalDate createdAt;
+    private Long size;
     private Long product;
 }

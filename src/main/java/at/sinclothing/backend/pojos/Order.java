@@ -17,21 +17,24 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue
+    @Column(name = "order_id")
     private Long orderId;
 
     @NonNull
     private LocalDate date;
 
+    @Enumerated(EnumType.STRING)
+    @NonNull
+    @Column(name = "payment_status")
+    private PaymentStatus paymentStatus;
+
     @NonNull
     private double amount;
 
-    @ManyToOne
-    @JoinColumn(name = "method_id")
+    @Enumerated(EnumType.STRING)
+    @NonNull
+    @Column(name = "payment_method")
     private PaymentMethod paymentMethod;
-
-    @ManyToOne
-    @JoinColumn(name = "status_id")
-    private PaymentStatus paymentStatus;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

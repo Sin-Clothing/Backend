@@ -16,16 +16,20 @@ import java.util.List;
 public class Size implements Serializable {
 
     @Id
-    @GeneratedValue
+    @Column(name = "size_id")
     private Long sizeId;
 
     @Basic(optional = false)
     @NonNull
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "product_size",
-        joinColumns = {@JoinColumn(name = "size_id")},
-        inverseJoinColumns = {@JoinColumn(name = "product_id")})
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "size", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<ProductInventory> productInventories = new ArrayList<>();
+
+    public void addProductInventory(ProductInventory productInventory){
+        if(!productInventories.contains(productInventory)){
+            productInventories.add(productInventory);
+            productInventory.setSize(this);
+        }
+    }
 }

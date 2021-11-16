@@ -16,6 +16,7 @@ public class Customer implements Serializable {
 
     @Id
     @GeneratedValue
+    @Column(name = "customer_id")
     private Long customerId;
 
     @NonNull

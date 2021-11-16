@@ -15,7 +15,7 @@ import java.util.List;
 public class Discount implements Serializable {
 
     @Id
-    @GeneratedValue
+    @Column(name = "discount_id")
     private Long discountId;
 
     @Basic(optional = false)
