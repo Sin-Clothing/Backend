@@ -12,6 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
+@NamedQueries({
+    @NamedQuery(name = "ProductCategory.getAll", query = "SELECT c FROM product_category c")
+})
 public class ProductCategory implements Serializable {
 
     @Id

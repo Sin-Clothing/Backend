@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,6 +26,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProducts() {
         return products;
+    }
+
+    @Override
+    public List<Product> getFilteredProducts(int categoryId) {
+        return products.stream().filter(p -> p.getProductCategory().getCategoryId() == categoryId).collect(Collectors.toList());
+    }
+
+    @Override
+    public Product findProduct(String name) {
+        return products.stream().filter(p -> p.getName().equals(name)).findFirst().get();
     }
 
     @Override

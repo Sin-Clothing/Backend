@@ -24,4 +24,13 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("filteredProducts")
+    List<Product> filterProducts(@RequestParam int categoryId){
+        return productService.getFilteredProducts(categoryId);
+    }
+
+    @GetMapping("findProduct")
+    Product findProduct(@RequestParam String name){
+        return productService.findProduct(name);
+    }
 }
