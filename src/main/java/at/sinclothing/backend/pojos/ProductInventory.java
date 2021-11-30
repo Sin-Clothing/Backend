@@ -1,5 +1,6 @@
 package at.sinclothing.backend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,11 +21,13 @@ public class ProductInventory implements Serializable {
 
     @Id
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "product_id")
     private Product product;
 
     @Id
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "size_id")
     private Size size;
 }

@@ -1,5 +1,6 @@
 package at.sinclothing.backend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,15 +22,18 @@ public class Discount implements Serializable {
     @Basic(optional = false)
     @NonNull
     private int percent;
+
     @Basic(optional = false)
     @NonNull
     private String name;
+
     @Basic(optional = false)
     @NonNull
     private boolean active;
 
     @OneToMany(mappedBy = "discount", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();
 
     public void addProduct(Product product){

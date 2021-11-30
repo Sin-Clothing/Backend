@@ -1,5 +1,6 @@
 package at.sinclothing.backend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Size implements Serializable {
     @NonNull
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "size", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<ProductInventory> productInventories = new ArrayList<>();
 

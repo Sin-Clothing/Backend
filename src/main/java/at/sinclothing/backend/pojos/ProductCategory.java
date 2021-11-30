@@ -1,5 +1,6 @@
 package at.sinclothing.backend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,9 +25,11 @@ public class ProductCategory implements Serializable {
     @Basic(optional = false)
     @NonNull
     private String name;
+
     @NonNull
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "productCategory", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Product> products = new ArrayList<>();
 

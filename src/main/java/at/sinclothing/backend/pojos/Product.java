@@ -1,5 +1,6 @@
 package at.sinclothing.backend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -33,18 +34,22 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "discount_id")
+    @JsonIgnore
     private Discount discount;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "category_id")
     private ProductCategory productCategory;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude
+    @JsonIgnore
     private List<ProductInventory> productInventories= new ArrayList<>();
 
     @OneToMany(mappedBy = "productId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude
+    @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
 
     public void addOrderItem(OrderItem orderItem){
