@@ -25,8 +25,8 @@ public class ProductController {
     }
 
     @GetMapping("filteredProducts")
-    List<Product> filterProducts(@RequestParam int categoryId){
-        return productService.getFilteredProducts(categoryId);
+    List<Product> filterProducts(@RequestParam String categoryName){
+        return productService.getFilteredProducts(categoryName);
     }
 
     @GetMapping("findProduct")

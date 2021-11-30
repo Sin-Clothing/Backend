@@ -1,6 +1,7 @@
 package at.sinclothing.backend.service;
 
 import at.sinclothing.backend.pojos.Product;
+import at.sinclothing.backend.pojos.ProductCategory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getFilteredProducts(int categoryId) {
-        return products.stream().filter(p -> p.getProductCategory().getCategoryId() == categoryId).collect(Collectors.toList());
+    public List<Product> getFilteredProducts(String categoryName) {
+        return products.stream().filter(p -> p.getProductCategory().getName().toLowerCase().equals(categoryName.toLowerCase())).collect(Collectors.toList());
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface ProductService {
     @NotNull
     List<Product> getAllProducts();
 
-    List<Product> getFilteredProducts(int categoryId);
+    List<Product> getFilteredProducts(String categoryName);
 
     Product findProduct(String name);
 
