@@ -3,6 +3,7 @@ package at.sinclothing.backend.api;
 import at.sinclothing.backend.pojos.Product;
 import at.sinclothing.backend.service.ProductService;
 import at.sinclothing.backend.service.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +13,12 @@ import java.util.List;
 @CrossOrigin(origins= "*", methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.PUT})
 public class ProductController {
 
-    private ProductService productService = new ProductServiceImpl();
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("test")
     String test() {
-        return "Sünden sind periodisch und wiederkehren d.";
+        return "Sünden sind periodisch und wiederkehrend.";
     }
 
     @GetMapping("products")
@@ -25,8 +27,8 @@ public class ProductController {
     }
 
     @GetMapping("filteredProducts")
-    List<Product> filterProducts(@RequestParam String categoryName){
-        return productService.getFilteredProducts(categoryName);
+    List<Product> filterProducts(@RequestParam long categoryId){
+        return productService.getFilteredProducts(categoryId);
     }
 
     @GetMapping("findProduct")
