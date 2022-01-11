@@ -10,5 +10,4 @@ public interface CategoryService {
     void fetchCategories();
 
     List<ProductCategory> getAllCategories();
-
 }

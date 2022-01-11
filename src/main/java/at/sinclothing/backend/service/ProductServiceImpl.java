@@ -33,7 +33,8 @@ public class ProductServiceImpl implements ProductService {
         if(categoryId == -1) {
             return products;
         }
-        return products.stream().filter(p -> p.getProductCategory().getCategoryId().equals(categoryId)).collect(Collectors.toList());
+        return products.stream().filter(p ->
+                p.getProductCategory().getCategoryId().equals(categoryId)).collect(Collectors.toList());
     }
 
     @Override

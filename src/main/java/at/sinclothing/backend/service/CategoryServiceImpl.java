@@ -1,6 +1,5 @@
 package at.sinclothing.backend.service;
 
-import at.sinclothing.backend.pojos.Product;
 import at.sinclothing.backend.pojos.ProductCategory;
 import at.sinclothing.backend.repo.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
