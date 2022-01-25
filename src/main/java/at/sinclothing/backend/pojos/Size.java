@@ -25,13 +25,12 @@ public class Size implements Serializable {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "size", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "size", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<ProductInventory> productInventories = new ArrayList<>();
-
-    public void addProductInventory(ProductInventory productInventory){
-        if(!productInventories.contains(productInventory)){
-            productInventories.add(productInventory);
-            productInventory.setSize(this);
+            public void addProductInventory(ProductInventory productInventory){
+                if(!productInventories.contains(productInventory)){
+                    productInventories.add(productInventory);
+                    productInventory.setSize(this);
         }
     }
 }

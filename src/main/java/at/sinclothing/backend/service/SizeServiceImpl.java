@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SizeServiceImpl implements SizeService{
+public class SizeServiceImpl implements SizeService {
 
     SizeRepository sizeRepository;
 

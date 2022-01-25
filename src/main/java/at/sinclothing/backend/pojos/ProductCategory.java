@@ -30,7 +30,7 @@ public class ProductCategory implements Serializable {
     private String description;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "productCategory", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productCategory", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Product> products = new ArrayList<>();
 
     public void addProduct(Product product){

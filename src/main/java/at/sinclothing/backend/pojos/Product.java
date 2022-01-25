@@ -47,7 +47,7 @@ public class Product implements Serializable {
     @JsonIgnore
     private List<ProductInventory> productInventories= new ArrayList<>();
 
-    @OneToMany(mappedBy = "productId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productId", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @ToString.Exclude
     @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
