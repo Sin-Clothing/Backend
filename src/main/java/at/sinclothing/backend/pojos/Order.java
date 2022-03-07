@@ -1,11 +1,15 @@
 package at.sinclothing.backend.pojos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +26,28 @@ public class Order implements Serializable {
     private Long orderId;
 
     @NonNull
-    private LocalDate date;
+    @JsonDeserialize(using = JsonDeserializer.class)
+    @DateTimeFormat(pattern = "yyyy-M-d, H:m:s")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-DD'T'HH:mm:ss.SSS")
+    private LocalDateTime date;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
+//    @NonNull
+//    @Column(name = "payment_status")
+//    private PaymentStatus paymentStatus;
+
     @NonNull
-    @Column(name = "payment_status")
-    private PaymentStatus paymentStatus;
+    private String firstname;
+    @NonNull
+    private String lastname;
+    @NonNull
+    private String email;
 
     @NonNull
     private double amount;
+
+    @NonNull
+    private String address;
 
     @Enumerated(EnumType.STRING)
     @NonNull
@@ -42,9 +59,8 @@ public class Order implements Serializable {
     @JsonIgnore
     private Customer customer;
 
-    @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @ToString.Exclude
-    @JsonIgnore
     private List<OrderItem> orderItems = new ArrayList<>();
 
     public void addOrderItem(OrderItem item){

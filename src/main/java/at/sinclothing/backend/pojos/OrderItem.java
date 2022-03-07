@@ -1,6 +1,9 @@
 package at.sinclothing.backend.pojos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,23 +14,22 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 @IdClass(OrderItemPK.class)
 public class OrderItem implements Serializable {
 
     @Id
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "product_id")
+    @JsonDeserialize(using = ProductDeserializer.class)
     private Product productId;
 
     @Id
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "order_id")
     private Order orderId;
 
-    @NonNull
+    @JsonProperty("qty")
     private int quantity;
 
 }
