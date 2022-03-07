@@ -29,11 +29,11 @@ public class Customer implements Serializable {
     @NonNull
     private String email;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer")
     @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer")
     @JsonIgnore
     private List<Address> addresses = new ArrayList<>();
 
