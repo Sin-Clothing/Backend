@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("checkout")
@@ -30,14 +32,13 @@ public class OrderController {
                 orderItem.setOrderId(order);
             }
             orderRepository.saveAndFlush(order);
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setTo(order.getEmail());
-            System.out.println(order.getEmail());
-            mailMessage.setSubject("Order Confirmation");
-            mailMessage.setFrom("kainbock.pos@gmail.com");
-            String text = "Rechnung: "+order.getAmount();
-            mailMessage.setText(text);
-            emailSenderService.sendEmail(mailMessage);
+
+            Map<String, Object> templateModel = new HashMap<>();
+            templateModel.put("items", order.getOrderItems());
+            //TODO rechnung model stuff
+
+            emailSenderService.sendMessageUsingThymeleafTemplate(order.getEmail(), "Sin-Clothing Rechnung", templateModel);
+
             URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                     .path("/{id}")
                     .buildAndExpand(order.getOrderId())

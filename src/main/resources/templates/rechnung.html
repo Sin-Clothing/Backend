@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        /**/
+    </style>
+</head>
+<body>
+    <img style="height: 75px;" th:src="@{/images/logo.png}" />
+
+    <p>Sin-Clothing GmbH - Grazerstraße 202 - 8430 Kaindorf</p>
+    <table style="width: 100%;">
+        <tbody>
+            <tr>
+                <td>
+                    <p style="font-weight: bold;" th:text="${firstname} + ' ' + ${lastname}"></p>
+                    <p style="font-weight: bold;" th:text="${adresse}"></p>
+                </td>
+                <td style="right: 0;">
+                    <p style="font-weight: bold; text-decoration: underline;">Kontakt</p>
+                    <p>Internet: syn-clothing.com</p>
+                    <p>E-Mail: support@syn-clothing.com</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tbody>
+            <td th:each="item : ${items}">
+
+            </td>
+        </tbody>
+    </table>
+
+</body>
+</html>
