@@ -28,7 +28,6 @@ public class Order implements Serializable {
     @NonNull
     @JsonDeserialize(using = JsonDeserializer.class)
     @DateTimeFormat(pattern = "yyyy-M-d, H:m:s")
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-DD'T'HH:mm:ss.SSS")
     private LocalDateTime date;
 
 //    @Enumerated(EnumType.STRING)
@@ -49,15 +48,15 @@ public class Order implements Serializable {
     @NonNull
     private String address;
 
-    @Enumerated(EnumType.STRING)
-    @NonNull
-    @Column(name = "payment_method")
-    private PaymentMethod paymentMethod;
+//    @Enumerated(EnumType.STRING)
+//    @NonNull
+//    @Column(name = "payment_method")
+//    private PaymentMethod paymentMethod;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    @JsonIgnore
-    private Customer customer;
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    @JsonIgnore
+//    private Customer customer;
 
     @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @ToString.Exclude

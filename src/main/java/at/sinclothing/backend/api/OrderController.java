@@ -1,10 +1,8 @@
 package at.sinclothing.backend.api;
 
 import at.sinclothing.backend.mail.EmailSenderService;
-import at.sinclothing.backend.pojos.Customer;
 import at.sinclothing.backend.pojos.Order;
 import at.sinclothing.backend.pojos.OrderItem;
-import at.sinclothing.backend.repo.CustomerRepository;
 import at.sinclothing.backend.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
