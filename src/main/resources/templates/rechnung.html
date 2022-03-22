@@ -7,32 +7,68 @@
     </style>
 </head>
 <body>
-    <img style="height: 75px;" th:src="@{/images/logo.png}" />
 
     <p>Sin-Clothing GmbH - Grazerstraße 202 - 8430 Kaindorf</p>
-    <table style="width: 100%;">
+    <table style="width: 100%; border-spacing: 2px 2px;" >
         <tbody>
             <tr>
                 <td>
                     <p style="font-weight: bold;" th:text="${firstname} + ' ' + ${lastname}"></p>
-                    <p style="font-weight: bold;" th:text="${adresse}"></p>
+                    <p style="font-weight: bold;" th:text="${streetname} + ' ' + ${streetnumber}"></p>
+                    <p style="font-weight: bold;" th:text="${postalcode} + ' ' + ${city}"></p>
+                    <p style="font-weight: bold;" th:text="${country}"></p>
                 </td>
                 <td style="right: 0;">
                     <p style="font-weight: bold; text-decoration: underline;">Kontakt</p>
-                    <p>Internet: syn-clothing.com</p>
-                    <p>E-Mail: support@syn-clothing.com</p>
+                    <p>Internet: sin-clothing.com</p>
+                    <p>E-Mail: support@sin-clothing.com</p>
+                    <p style="font-weight: bold;" th:text="'Datum: ' + ${date}"></p>
+                    <p style="font-weight: bold;" th:text="'Rechnungs Nr.: ' + ${rechnungsNr}"></p>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <table>
-        <tbody>
-            <td th:each="item : ${items}">
+    <p th:text="'Deine Bestellung Nr. ' + ${bestellNr}"></p>
+    <h2 th:text="'Rechnung: ' + ${rechnungsNr}"></h2>
 
-            </td>
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${items}">
+                <td th:text="${item.productId.productId}"></td>
+                <td th:text="${item.productId.name}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.productId.price}"></td>
+            </tr>
         </tbody>
     </table>
 
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 70%"></td>
+            <td>Netto: </td>
+            <td style="right: 0;" th:text="${amountExcl}"></td>
+        </tr>
+        <tr>
+            <td style="width: 70%"></td>
+            <td>20% Ust: </td>
+            <td style="right: 0;" th:text="${ust}"></td>
+        </tr>
+        <tr>
+            <td style="width: 70%"></td>
+            <td style="font-weight: bold;" >Total: </td>
+            <td style="font-weight: bold; right: 0;" th:text="${total}"></td>
+        </tr>
+    </table>
+
+    <p>Deine Sünden sind nun vergeben...</p>
 </body>
 </html>

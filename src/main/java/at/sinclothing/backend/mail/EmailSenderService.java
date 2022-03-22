@@ -43,20 +43,14 @@ public class EmailSenderService {
         javaMailSender.send(email);
     }
 
-    public void sendMessageUsingThymeleafTemplate(
-            String to, String subject, Map<String, Object> templateModel)
-            throws MessagingException {
-
+    public void sendMessageUsingThymeleafTemplate(String to, String subject, Map<String, Object> templateModel) throws MessagingException {
         Context thymeleafContext = new Context();
         thymeleafContext.setVariables(templateModel);
-
         String htmlBody = thymeleafTemplateEngine.process("rechnung.html", thymeleafContext);
-
         sendHtmlMessage(to, subject, htmlBody);
     }
 
     private void sendHtmlMessage(String to, String subject, String htmlBody) throws MessagingException {
-
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
         helper.setFrom("noreply@sin-clothing.com");
