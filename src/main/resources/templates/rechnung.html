@@ -33,15 +33,13 @@
     <h2 th:text="'Rechnung: ' + ${rechnungsNr}"></h2>
 
     <table style="width: 100%;">
-        <thead>
-            <tr>
-                <th>Product ID</th>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>
-        </thead>
         <tbody>
+            <tr >
+                <td style="font-weight: bold; border-bottom: 2px solid black;">Product ID</td>
+                <td style="font-weight: bold; border-bottom: 2px solid black;">Name</td>
+                <td style="font-weight: bold; border-bottom: 2px solid black;">Quantity</td>
+                <td style="font-weight: bold; border-bottom: 2px solid black;">Price</td>
+            </tr>
             <tr th:each="item : ${items}">
                 <td th:text="${item.productId.productId}"></td>
                 <td th:text="${item.productId.name}"></td>
@@ -50,22 +48,22 @@
             </tr>
         </tbody>
     </table>
-
+    <hr style="height:2px;color:black;background-color:black">
     <table style="width: 100%;">
         <tr>
             <td style="width: 70%"></td>
-            <td>Netto: </td>
-            <td style="right: 0;" th:text="${amountExcl}"></td>
+            <td style="border-bottom: 1px solid black;">Netto: </td>
+            <td style="right: 0; border-bottom: 1px solid black;" th:text="${amountExcl}"></td>
         </tr>
         <tr>
             <td style="width: 70%"></td>
-            <td>20% Ust: </td>
-            <td style="right: 0;" th:text="${ust}"></td>
+            <td style="border-bottom: 1px solid black;">20% Ust: </td>
+            <td style="right: 0; border-bottom: 1px solid black;" th:text="${ust}"></td>
         </tr>
         <tr>
             <td style="width: 70%"></td>
-            <td style="font-weight: bold;" >Total: </td>
-            <td style="font-weight: bold; right: 0;" th:text="${total}"></td>
+            <td style="font-weight: bold; border-bottom: 2px solid black;" >Total: </td>
+            <td style="font-weight: bold; right: 0; border-bottom: 2px solid black;" th:text="${total}"></td>
         </tr>
     </table>
 

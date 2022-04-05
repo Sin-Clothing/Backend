@@ -43,12 +43,12 @@ public class OrderController {
             templateModel.put("firstname", order.getFirstname());
             templateModel.put("lastname", order.getLastname());
             templateModel.put("amountExcl",
-                    new BigDecimal(order.getAmount()*0.8).setScale(2, RoundingMode.HALF_UP).doubleValue());
+                    String.format("%.2f", new BigDecimal(order.getAmount()*0.8).setScale(2, RoundingMode.HALF_UP).doubleValue()));
             templateModel.put("ust",
-                    new BigDecimal(order.getAmount()*0.2).setScale(2, RoundingMode.HALF_UP).doubleValue());
+                    String.format("%.2f", new BigDecimal(order.getAmount()*0.2).setScale(2, RoundingMode.HALF_UP).doubleValue()));
             templateModel.put("total",
-                    new BigDecimal(order.getAmount()).setScale(2, RoundingMode.HALF_UP).doubleValue());
-            templateModel.put("date", date);
+                    String.format("%.2f", new BigDecimal(order.getAmount()).setScale(2, RoundingMode.HALF_UP).doubleValue()));
+            templateModel.put("date", String.format("%2d.%2d.%4d", date.getDayOfMonth(), date.getMonth().getValue(), date.getYear()));
 
             String[] tokens = order.getAddress().split(";");
             templateModel.put("country", tokens[0]);
